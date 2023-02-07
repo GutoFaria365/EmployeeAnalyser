@@ -7,16 +7,20 @@ import java.util.stream.Collectors;
 public class EmployeeAnalyzer {
 
     public long countEmployees(List<Employee> employees, int years) {
-
-        return 0;
+        return employees.stream()
+                .filter(employee -> ((Year.now().getValue() - employee.getStartingYear()) > years))
+                .count();
     }
 
     public List<String> findEmployeeBySalary(List<Employee> employees, int salary) {
-        return new ArrayList<>();
+        return employees.stream()
+                .filter(employee -> employee.getSalary() > salary)
+                .map(employee -> employee.getFirstName() + " " +  employee.getLastname())
+                .collect(Collectors.toList());
     }
 
     public List<Employee> findOldestEmployees(List<Employee> employees, int numberOfEmployees) {
-        return  new ArrayList<>();
+        return new ArrayList<>();
     }
 
     public Optional<Employee> findFirstEmployeeByAge(List<Employee> employees, int age) {
