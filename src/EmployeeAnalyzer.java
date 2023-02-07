@@ -33,12 +33,17 @@ public class EmployeeAnalyzer {
     }
 
     public Double findAverageSalary(List<Employee> employees) {
-        return 0.0;
+        return employees.stream()
+                .mapToInt(e -> e.getSalary())
+                .average()
+                .getAsDouble();
     }
 
     public List<String> findCommonNames(List<Employee> firstDepartment, List<Employee> secondDepartment) {
-
-
-        return new ArrayList<>();
+        return firstDepartment.stream()
+                .filter(e2 -> secondDepartment.stream()
+                        .anyMatch(e1 -> e1.getFirstName().equals(e2.getFirstName())))
+                .map(employee -> employee.getFirstName() + " " + employee.getLastname())
+                .collect(Collectors.toList());
     }
 }
