@@ -15,7 +15,7 @@ public class EmployeeAnalyzer {
     public List<String> findEmployeeBySalary(List<Employee> employees, int salary) {
         return employees.stream()
                 .filter(employee -> employee.getSalary() > salary)
-                .map(employee -> employee.getFirstName() + " " +  employee.getLastname())
+                .map(employee -> employee.getFirstName() + " " + employee.getLastname())
                 .collect(Collectors.toList());
     }
 
@@ -40,10 +40,15 @@ public class EmployeeAnalyzer {
     }
 
     public List<String> findCommonNames(List<Employee> firstDepartment, List<Employee> secondDepartment) {
-        return firstDepartment.stream()
+
+        List<String> commonNames = firstDepartment.stream()
                 .filter(e2 -> secondDepartment.stream()
                         .anyMatch(e1 -> e1.getFirstName().equals(e2.getFirstName())))
-                .map(employee -> employee.getFirstName() + " " + employee.getLastname())
+                .map(employee -> employee.getFirstName())
                 .collect(Collectors.toList());
+
+        HashSet<String> newListNames = new HashSet<>(commonNames);
+
+        return newListNames.stream().toList();
     }
 }
