@@ -20,13 +20,16 @@ public class EmployeeAnalyzer {
     }
 
     public List<Employee> findOldestEmployees(List<Employee> employees, int numberOfEmployees) {
-        return new ArrayList<>();
+        return employees.stream()
+                .sorted((e1, e2) -> e2.getAge() - e1.getAge())
+                .limit(numberOfEmployees)
+                .collect(Collectors.toList());
     }
 
     public Optional<Employee> findFirstEmployeeByAge(List<Employee> employees, int age) {
-
-
-        return Optional.empty();
+        return employees.stream()
+                .filter(e -> e.getAge() > age)
+                .findFirst();
     }
 
     public Double findAverageSalary(List<Employee> employees) {

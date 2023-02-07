@@ -50,7 +50,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "Employee {" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastname='" + lastname + '\'' +
